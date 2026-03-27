@@ -26,7 +26,7 @@ section{
     padding:100px 10%;
 }
 
-/* ===== LAUNCH SCREEN ===== */
+/* ===== LOADER ===== */
 .loader{
     position:fixed;
     top:0;
@@ -68,7 +68,7 @@ section{
     to{opacity:0;visibility:hidden;}
 }
 
-/* ===== FLOATING BACKGROUND ===== */
+/* ===== BACKGROUND ===== */
 .floating-bg{
     position:fixed;
     width:100%;
@@ -126,7 +126,6 @@ nav a{
     margin-left:25px;
     color:#fff;
     text-decoration:none;
-    transition:0.3s;
 }
 
 nav a:hover{color:#38bdf8;}
@@ -150,11 +149,6 @@ nav a:hover{color:#38bdf8;}
     border-radius:30px;
     text-decoration:none;
     font-weight:600;
-    transition:0.3s;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
 }
 
 /* ===== ABOUT ===== */
@@ -165,6 +159,16 @@ nav a:hover{color:#38bdf8;}
     flex-wrap:wrap;
 }
 
+#github-avatar{
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(56,189,248,0.5);
+    transition:0.4s;
+}
+
+#github-avatar:hover{
+    transform:scale(1.05);
+}
+
 /* ===== PROJECTS ===== */
 .project-grid{
     margin-top:50px;
@@ -173,9 +177,7 @@ nav a:hover{color:#38bdf8;}
     gap:30px;
 }
 
-.card{
-    perspective:1200px;
-}
+.card{perspective:1200px;}
 
 .card-inner{
     position:relative;
@@ -186,7 +188,7 @@ nav a:hover{color:#38bdf8;}
 }
 
 .card:hover .card-inner{
-    transform:rotateY(180deg) rotateX(8deg);
+    transform:rotateY(180deg);
 }
 
 .card-front,.card-back{
@@ -195,6 +197,7 @@ nav a:hover{color:#38bdf8;}
     height:100%;
     border-radius:20px;
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
     backface-visibility:hidden;
@@ -208,25 +211,8 @@ nav a:hover{color:#38bdf8;}
     transform:rotateY(180deg);
 }
 
-/* ===== CONTACT INTERACTIVE ===== */
-.contact{
-    text-align:center;
-    position:relative;
-}
-
-/* floating doodle icons */
-.contact::before,
-.contact::after{
-    content:"✦";
-    position:absolute;
-    font-size:40px;
-    color:#38bdf8;
-    opacity:0.15;
-    animation:float 6s infinite alternate;
-}
-
-.contact::before{left:10%;top:20%;}
-.contact::after{right:10%;bottom:20%;}
+/* ===== CONTACT ===== */
+.contact{text-align:center;}
 
 .contact-form{
     max-width:500px;
@@ -234,81 +220,36 @@ nav a:hover{color:#38bdf8;}
     padding:40px;
     border-radius:20px;
     background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(20px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.5);
     display:flex;
     flex-direction:column;
     gap:20px;
-    transition:0.4s;
 }
 
-.contact-form:hover{
-    transform:rotateX(4deg) rotateY(-4deg);
-}
-
-/* INPUT ANIMATION */
 .contact-form input,
 .contact-form textarea{
     padding:15px;
     border:none;
     border-radius:12px;
-    outline:none;
-    font-size:16px;
-    transition:0.3s;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus{
-    transform:translateY(-3px);
-    box-shadow:0 0 15px #38bdf8;
+/* CONTACT BUTTONS */
+.contact-links{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-/* BUTTON RIPPLE EFFECT */
-.contact-form input[type="submit"]{
-    background:#38bdf8;
-    color:#000;
-    font-weight:bold;
-    cursor:pointer;
-    position:relative;
-    overflow:hidden;
-    transition:0.3s;
-}
-
-.contact-form input[type="submit"]:active{
-    transform:scale(0.95);
-}
-
-/* ripple */
-.contact-form input[type="submit"]::after{
-    content:"";
-    position:absolute;
-    width:0;
-    height:0;
-    border-radius:50%;
-    background:rgba(255,255,255,0.6);
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    transition:0.6s;
-}
-
-.contact-form input[type="submit"]:active::after{
-    width:200px;
-    height:200px;
-    opacity:0;
-}
+.contact-links .btn:nth-child(1){background:#22c55e;}
+.contact-links .btn:nth-child(2){background:#facc15;}
+.contact-links .btn:nth-child(3){background:#38bdf8;}
 
 /* ===== FOOTER ===== */
 footer{
     text-align:center;
     padding:20px;
     background:#0b1220;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-    .hero h1{font-size:32px;}
-    .about{flex-direction:column;text-align:center;}
 }
 
 </style>
@@ -338,30 +279,21 @@ footer{
 
 <section class="hero" id="home">
     <h1>Hello, I'm <span>Arjun S Nair</span></h1>
-    <p>Flutter Developer crafting beautiful cross-platform applications.</p>
-    <a href="#projects" class="btn">View My Work</a>
+    <p>Flutter Developer crafting beautiful apps.</p>
 </section>
 
 <section class="about" id="about">
-    <img src="https://via.placeholder.com/250" width="250">
+    <img id="github-avatar" width="250">
     <div>
         <h2>About Me</h2>
         <p>I build elegant Flutter apps with performance and clean UI.</p>
     </div>
 </section>
 
+<!-- AUTO PROJECTS -->
 <section class="projects" id="projects">
     <h2 style="text-align:center;">My Projects</h2>
-    <div class="project-grid">
-
-        <div class="card"><div class="card-inner"><div class="card-front"><h3>E-Commerce</h3></div><div class="card-back"><p>Payment integrated app.</p></div></div></div>
-        <div class="card"><div class="card-inner"><div class="card-front"><h3>Dashboard</h3></div><div class="card-back"><p>Flutter web dashboard.</p></div></div></div>
-        <div class="card"><div class="card-inner"><div class="card-front"><h3>Chat App</h3></div><div class="card-back"><p>Realtime Firebase chat.</p></div></div></div>
-        <div class="card"><div class="card-inner"><div class="card-front"><h3>Startup App</h3></div><div class="card-back"><p>Business solution.</p></div></div></div>
-        <div class="card"><div class="card-inner"><div class="card-front"><h3>UI Kit</h3></div><div class="card-back"><p>Reusable components.</p></div></div></div>
-        <div class="card"><div class="card-inner"><div class="card-front"><h3>Fitness App</h3></div><div class="card-back"><p>Health tracking system.</p></div></div></div>
-
-    </div>
+    <div class="project-grid" id="project-container"></div>
 </section>
 
 <section class="contact" id="contact">
@@ -373,11 +305,64 @@ footer{
         <textarea placeholder="Your Message" required></textarea>
         <input type="submit" value="Send Message">
     </form>
+
+    <div class="contact-links">
+        <a href="https://wa.me/918848306468" target="_blank" class="btn">WhatsApp</a>
+        <a href="mailto:arjunthengamam0@gmail.com" class="btn">Email</a>
+        <a href="tel:+918848306468" class="btn">Call</a>
+    </div>
 </section>
 
 <footer>
-    © 2026 Arjun S Nair | Flutter Developer
+    © 2026 Arjun S Nair
 </footer>
+
+<script>
+const username = "ArjunShoba";
+
+// PROFILE IMAGE
+fetch(`https://api.github.com/users/${username}`)
+.then(res => res.json())
+.then(user => {
+    document.getElementById("github-avatar").src = user.avatar_url;
+});
+
+// PROJECTS
+fetch(`https://api.github.com/users/${username}/repos`)
+.then(res => res.json())
+.then(data => {
+
+    const container = document.getElementById("project-container");
+
+    data.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at));
+
+    data.slice(0,6).forEach(repo => {
+
+        if(repo.fork) return;
+
+        const card = document.createElement("a");
+        card.href = repo.html_url;
+        card.target = "_blank";
+
+        card.innerHTML = `
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h3>${repo.name}</h3>
+                </div>
+                <div class="card-back">
+                    <p>${repo.description || "No description"}</p>
+                    <p>⭐ ${repo.stargazers_count}</p>
+                </div>
+            </div>
+        </div>
+        `;
+
+        container.appendChild(card);
+    });
+
+});
+</script>
 
 </body>
 </html>
